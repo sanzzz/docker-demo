@@ -1,7 +1,7 @@
 node {
    def commit_id
    environment {
-      DOCKERHUB_CREDENTIALS = credentials('dockerhub)
+      DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
    stage('Preparation') {
      checkout scm
