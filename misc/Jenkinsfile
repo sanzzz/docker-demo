@@ -2,6 +2,7 @@ node {
    def commit_id
    environment {
       DOCKERHUB_CREDENTIALS = credentials('dockerhub)
+  }
    stage('Preparation') {
      checkout scm
      sh "git rev-parse --short HEAD > .git/commit-id"                        
@@ -15,15 +16,12 @@ node {
    }
    stage('build') {
      sh 'docker build -t santhosh1987/nodjs-app-jenkins-pipeline:$commit_id .'
-
    }
    stage('login') {
      sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS '
-
    }
    stage('push') {
      sh 'docker push santhosh1987/nodjs-app-jenkins-pipeline:$commit_id'
-
    }
 
 }
